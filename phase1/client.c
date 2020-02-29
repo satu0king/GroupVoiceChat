@@ -59,9 +59,9 @@ int main(int argc, char *argv[]) {
     };
 
     // Start receiver thread to receive call from others
-    // CALL(pthread_create(&receiver_thread, NULL, receive_voice_messages,
-    //                     (void *)&connection),
-    //      "Receiver thread");
+    CALL(pthread_create(&receiver_thread, NULL, receive_voice_messages,
+                        (void *)&connection),
+         "Receiver thread");
 
     // // Start receiver thread to receive call from others
     CALL(pthread_create(&send_thread, NULL, send_voice_messages, (void *)&connection),
