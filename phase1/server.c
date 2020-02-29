@@ -80,7 +80,7 @@ int main(int argc, char *argv[]) {
          "Send thread");
 
     pthread_join(receiver_thread, NULL);
-    // pthread_join(send_thread, NULL);
+    pthread_join(send_thread, NULL);
 }
 
 // Function to close resource handles and gracefully shutdown
