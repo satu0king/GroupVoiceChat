@@ -1,0 +1,78 @@
+<html>
+
+<head>
+    <link rel="stylesheet" media="all" href="./styles.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+
+    <form name="keypad">
+        <table>
+            <tr>
+                <td colspan="4">
+                    <input type="text" name="display" id="display" disabled>
+
+                </td>
+            </tr>
+            <tr>
+                <td><input type="button" name="one" value="1" onclick="keypad.display.value += '1'"></td>
+                <td><input type="button" name="two" value="2" onclick="keypad.display.value += '2'"></td>
+                <td><input type="button" name="three" value="3" onclick="keypad.display.value += '3'"></td>
+
+            </tr>
+            <tr>
+                <td><input type="button" name="four" value="4" onclick="keypad.display.value += '4'"></td>
+                <td><input type="button" name="five" value="5" onclick="keypad.display.value += '5'"></td>
+                <td><input type="button" name="six" value="6" onclick="keypad.display.value += '6'"></td>
+
+            </tr>
+            <tr>
+                <td><input type="button" name="seven" value="7" onclick="keypad.display.value += '7'"></td>
+                <td><input type="button" name="eight" value="8" onclick="keypad.display.value += '8'"></td>
+                <td><input type="button" name="nine" value="9" onclick="keypad.display.value += '9'"></td>
+
+            </tr>
+            <tr>
+                <td><input type="button" id="clear" name="clear" value="c" onclick="keypad.display.value = ''"></td>
+                <td><input type="button" name="zero" value="0" onclick="keypad.display.value += '0'"></td>
+                <td><input type="button" name="doit" value="." onclick="keypad.display.value += '.'"></td>
+
+
+
+            </tr>
+            <tr>
+                <td><input type="button" name="call" value="Call" id="callButton"></td>
+                <td><input type="button" name="call" value=":"  onclick="keypad.display.value += ':'"></td>
+                <td><input type="button" name="call" value="<-"  onclick="keypad.display.value = keypad.display.value.slice(0, -1)"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+
+<script>
+    function call() {
+
+        var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "/call",
+            "method": "POST",
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "processData": false,
+            "data": document.forms.keypad.display.value
+        }
+
+        $.ajax(settings).done(function (response) {
+            console.log(response);
+        });
+    }
+    document.getElementById('callButton').addEventListener('click', call);
+</script>
+
+
+
+</html>
